@@ -1,0 +1,26 @@
+{
+  "name": "eresume-v3",
+  "version": "0.0.0",
+  "description": "Matt Imel's eResume: the third rendition.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mimel/eResume-v3.git"
+  },
+  "author": "Matt Imel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mimel/eResume-v3/issues"
+  },
+  "homepage": "https://github.com/Mimel/eResume-v3#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "handlebars": "^4.5.3",
+    "node-sass": "^4.13.0",
+    "sass": "^1.24.0"
+  }
+}

@@ -1,0 +1,40 @@
+@font-face {
+  font-family: "Metropolis";
+  src: url("../fonts/Metropolis/Metropolis-Regular.otf");
+}
+html, head, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* ----- HEADER ----- */
+#site_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-family: "Metropolis";
+}
+
+#header_name {
+  font-size: 5em;
+}
+
+#header_nav ul {
+  display: flex;
+  font-size: 1.5em;
+  list-style: none;
+}
+#header_nav ul li {
+  margin-right: 20px;
+}
+
+/* ----- FOOTER ----- */
+#site_footer {
+  background-color: #BBBBBB;
+}
+
+/*# sourceMappingURL=main.css.map */
