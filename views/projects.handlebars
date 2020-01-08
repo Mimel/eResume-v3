@@ -1,1 +1,20 @@
-<div>Projects</div>
+<div id='projects_page'>
+  <section id='proj_sidebar'>
+    <nav id='proj_menu'>
+      {{#each projects}}
+        {{#with this}}
+          <h2>{{genre}}</h2>
+          <ul class='proj_genre'>
+            {{#each proj}}
+              {{#with this}}
+                <li>{{title}}</li>
+              {{/with}}
+            {{/each}}
+          </ul>
+        {{/with}}
+      {{/each}}
+    </nav>
+  </section>
+  <article id='proj_details'>
+  </article>
+</div>
