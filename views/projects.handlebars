@@ -7,7 +7,7 @@
           <ul class='proj_genre'>
             {{#each proj}}
               {{#with this}}
-                <li>{{title}}</li>
+                <li id='{{desc_slug}}' class='proj_link'>{{title}}</li>
               {{/with}}
             {{/each}}
           </ul>

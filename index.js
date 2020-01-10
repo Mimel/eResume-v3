@@ -2,6 +2,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
 const mysql = require('mysql');
+const fs = require('fs');
 
 const serverConn = mysql.createConnection({
   host: '127.0.0.1',
@@ -39,6 +40,16 @@ app.get('/projects', (req, res) => {
       console.log(structuredOut);
 
       res.render('projects', {projects: structuredOut});
+    }
+  });
+});
+
+app.get('/project_retrieve/:project_slug', (req, res, next) => {
+  fs.readFile('./proj/' + req.params.project_slug, 'utf8', (err, data) => {
+    if(err) {
+      console.log(err);
+    } else {
+      res.send(data);
     }
   });
 });
