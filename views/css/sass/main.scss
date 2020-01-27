@@ -3,7 +3,7 @@
   src: url('../fonts/Metropolis/Metropolis-Regular.otf');
 }
 
-html, head, body, ul, li, h2 {
+html, head, body, ul, li, h1, h2, h3 {
   margin: 0;
   padding: 0;
 }
@@ -66,8 +66,6 @@ html, body {
   padding-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
-
-  background-color: #BBBBBB;
 }
 
 #proj_menu {
@@ -86,7 +84,27 @@ html, body {
 
 #proj_details {
   width: 100%;
-  background-color: #888888;
+
+  box-sizing: border-box;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  font-family: 'Metropolis';
+}
+
+#proj_title {
+  font-size: 3em;
+  text-align: center;
+}
+
+#proj_short_text {
+  font-size: 2em;
+  text-align: center;
+}
+
+#proj_long_text {
+
 }
 
 /* ----- FOOTER ----- */

@@ -44,12 +44,31 @@ app.get('/projects', (req, res) => {
   });
 });
 
+app.get('/about', (req, res) => {
+  res.render('about');
+});
+
 app.get('/project_retrieve/:project_slug', (req, res, next) => {
-  fs.readFile('./proj/' + req.params.project_slug, 'utf8', (err, data) => {
-    if(err) {
-      console.log(err);
+  var proj_data_query = mysql.format(
+    'SELECT * FROM project AS p LEFT JOIN link l ON p.id = l.project_id WHERE ?? = ?',
+    ['text_slug', req.params.project_slug]
+  );
+  serverConn.query(proj_data_query, (error, results, fields) => {
+    if(error) {
+      console.log(error);
     } else {
-      res.send(data);
+      fs.readFile('./proj/' + req.params.project_slug, 'utf8', (err, data) => {
+        if(err) {
+          console.log(err);
+        } else {
+          console.log(results);
+          res.send({
+            title: results[0].title,
+            short_desc: results[0].short_desc,
+            long_desc: data
+          });
+        }
+      });
     }
   });
 });

@@ -7,7 +7,7 @@
           <ul class='proj_genre'>
             {{#each proj}}
               {{#with this}}
-                <li id='{{desc_slug}}' class='proj_link'>{{title}}</li>
+                <li id='{{text_slug}}' class='proj_link'>{{title}}</li>
               {{/with}}
             {{/each}}
           </ul>
@@ -16,5 +16,9 @@
     </nav>
   </section>
   <article id='proj_details'>
+    <h2 id='proj_title'></h2>
+    <h3 id='proj_short_text'></h3>
+    <section id='proj_long_text'>
+    </section>
   </article>
 </div>
