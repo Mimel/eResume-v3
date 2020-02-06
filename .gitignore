@@ -105,3 +105,8 @@ dist
 
 # Assets
 /views/fonts
+/views/css/default-skin
+/views/css/photoswipe.css
+/views/images
+/views/js/photoswipe.min.js
+/views/js/photoswipe-ui-default.min.js

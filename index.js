@@ -37,8 +37,6 @@ app.get('/projects', (req, res) => {
         }
       }
 
-      console.log(structuredOut);
-
       res.render('projects', {projects: structuredOut});
     }
   });
@@ -50,22 +48,42 @@ app.get('/about', (req, res) => {
 
 app.get('/project_retrieve/:project_slug', (req, res, next) => {
   var proj_data_query = mysql.format(
-    'SELECT * FROM project AS p LEFT JOIN link l ON p.id = l.project_id WHERE ?? = ?',
+    'SELECT title, short_desc, site, `text`, url ' +
+    'FROM project AS p LEFT JOIN link l ON p.id = l.project_id WHERE ?? = ?',
     ['text_slug', req.params.project_slug]
   );
-  serverConn.query(proj_data_query, (error, results, fields) => {
-    if(error) {
-      console.log(error);
+  serverConn.query(proj_data_query, (d_error, d_results, d_fields) => {
+    if(d_error) {
+      console.log(d_error);
     } else {
       fs.readFile('./proj/' + req.params.project_slug, 'utf8', (err, data) => {
         if(err) {
           console.log(err);
         } else {
-          console.log(results);
-          res.send({
-            title: results[0].title,
-            short_desc: results[0].short_desc,
-            long_desc: data
+          var proj_images_query = mysql.format(
+            'SELECT i.url AS url, t.url AS thumb_url, caption, width, height ' +
+            'FROM project AS p LEFT JOIN image i ON p.id = i.project_id ' +
+            'INNER JOIN thumbnail t ON i.id = t.image_id WHERE ?? = ?',
+            ['text_slug', req.params.project_slug]
+          );
+          serverConn.query(proj_images_query, (i_error, i_results, i_fields) => {
+            if(i_error) {
+              console.log(i_error);
+            } else {
+              res.send({
+                title: d_results[0].title,
+                short_desc: d_results[0].short_desc,
+                long_desc: data,
+                links: d_results.map(function(row) {
+                  return {
+                    site: row.site,
+                    text: row.text,
+                    url: row.url
+                  };
+                }),
+                image_info: i_results
+              });
+            }
           });
         }
       });
