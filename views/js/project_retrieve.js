@@ -16,25 +16,40 @@ var retrieveHtml = function(e) {
     }
     document.getElementById('proj_links').innerHTML = linksString;
 
-    // Initialize gallery.
-    var pswpElement = document.querySelectorAll('.pswp')[0];
-    var pictures = [];
-    var picturesHTMLString = '';
-    res.image_info.forEach(function(image) {
-      pictures.push({
-        src: image.url,
-        w: image.width,
-        h: image.height
-      });
-      picturesHTMLString += '<div class=\'proj_image\'><img src=\'' + image.thumb_url + '\' /></div>';
-    });
-    document.getElementById('proj_gallery').innerHTML = picturesHTMLString
-    var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, pictures, {
-      index: 0
-    });
+    loadImages(res.image_info);
   };
   xhr.send();
 };
+
+function loadImages(images) {
+  var pictures = [];
+  var picturesHTMLString = '';
+  images.forEach(function(image) {
+    pictures.push({
+      src: image.url,
+      w: image.width,
+      h: image.height
+    });
+    picturesHTMLString += '<img class=\'proj_image\' src=\'' + image.thumb_url + '\' />';
+  });
+  document.getElementById('proj_gallery').innerHTML = picturesHTMLString;
+
+  var imageElements = document.querySelectorAll('.proj_image');
+  console.log(imageElements);
+  imageElements.forEach(function(element) {
+    element.addEventListener('click', function(e) {
+      var pswpElement = document.querySelectorAll('.pswp')[0];
+
+      var elementIndex = 0;
+      for(var e = element; e != null; e = e.nextElementSibling, elementIndex++);
+
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, pictures, {
+        index: elementIndex
+      });
+      gallery.init();
+    });
+  });
+}
 
 for(var i = 0; i < classElements.length; i++) {
   setTimeout(classElements[i].addEventListener('click', retrieveHtml), 0);
