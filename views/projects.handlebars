@@ -7,7 +7,7 @@
           <ul class='proj_genre'>
             {{#each proj}}
               {{#with this}}
-                <li id='{{text_slug}}' class='proj_link'>{{title}}</li>
+                <li class='{{text_slug}} proj_link'>{{title}}</li>
               {{/with}}
             {{/each}}
           </ul>
@@ -15,13 +15,45 @@
       {{/each}}
     </nav>
   </section>
+  <section id='proj_header'>
+    <nav id='proj_header_menu'>
+      {{#each projects}}
+        {{#with this}}
+          <div class='proj_header_genre'>{{genre}}</div>
+        {{/with}}
+      {{/each}}
+    </nav>
+    <section id='proj_header_listings'>
+      {{#each projects}}
+        {{#with this}}
+          <div class='proj_header_dropdown'>
+            {{#each proj}}
+              {{#with this}}
+                <li class='{{text_slug}} proj_link'>{{title}}</li>
+              {{/with}}
+            {{/each}}
+          </div>
+        {{/with}}
+      {{/each}}
+    </section>
+  </section>
   <article id='proj_details'>
     <h2 id='proj_title'></h2>
     <h3 id='proj_short_text'></h3>
-    <section id='proj_links'></section>
-
-    <section id='proj_gallery'>
+    <div class='proj_divider'>
+      <div class='proj_divider_left'></div>
+      <div class='proj_divider_center'></div>
+      <div class='proj_divider_right'></div>
+    </div>
+    <section id='proj_midsection'>
+      <section id='proj_links'></section>
+      <section id='proj_gallery'></section>
     </section>
+    <div class='proj_divider'>
+      <div class='proj_divider_left'></div>
+      <div class='proj_divider_center'></div>
+      <div class='proj_divider_right'></div>
+    </div>
     <section id='proj_long_text'></section>
   </article>
 </div>

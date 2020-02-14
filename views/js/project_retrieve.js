@@ -1,8 +1,8 @@
-var classElements = document.getElementsByClassName('proj_link');
+var classElements = document.querySelectorAll('.proj_link');
 
 var retrieveHtml = function(e) {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', '/project_retrieve/' + e.target.id);
+  xhr.open('GET', '/project_retrieve/' + e.target.classList[0]);
   xhr.onload = (e) => {
     var res = JSON.parse(e.srcElement.response);
     document.getElementById('proj_title').innerHTML = res.title;
@@ -12,7 +12,7 @@ var retrieveHtml = function(e) {
     // Create links section
     var linksString = '';
     for(var i = 0; i < res.links.length; i++) {
-      linksString += '<a href=\'' + res.links[i].site + '\'>' + res.links[i].text + '</a>';
+      linksString += '<div><a href=\'' + res.links[i].site + '\'>' + res.links[i].text + '</a></div>';
     }
     document.getElementById('proj_links').innerHTML = linksString;
 
@@ -35,7 +35,6 @@ function loadImages(images) {
   document.getElementById('proj_gallery').innerHTML = picturesHTMLString;
 
   var imageElements = document.querySelectorAll('.proj_image');
-  console.log(imageElements);
   imageElements.forEach(function(element) {
     element.addEventListener('click', function(e) {
       var pswpElement = document.querySelectorAll('.pswp')[0];
@@ -53,4 +52,9 @@ function loadImages(images) {
 
 for(var i = 0; i < classElements.length; i++) {
   setTimeout(classElements[i].addEventListener('click', retrieveHtml), 0);
+
+  // Initially display the first project.
+  if(i == 0) {
+    setTimeout(classElements[i].dispatchEvent(new Event('click')), 0);
+  }
 }
