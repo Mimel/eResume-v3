@@ -12,8 +12,16 @@ for(var i = 0; i < projectHorizNavbarElements.length; i++) {
     if(currentShownElement >= 0) {
       accordionBody.children[currentShownElement].style.display = 'none';
     }
-    accordionBody.children[elementIndex].style.display = 'block';
-    currentShownElement = elementIndex;
+
+    // Close accordion if clicked link is the same as the active one.
+    if(currentShownElement == elementIndex) {
+      currentShownElement = -1;
+    } else {
+      accordionBody.children[elementIndex].style.display = 'block';
+      currentShownElement = elementIndex;
+    }
+
+
   }), 0);
 }
 

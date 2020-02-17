@@ -102,6 +102,10 @@ html, head, body, ul, li, h1, h2, h3 {
   }
 }
 
+.proj_link {
+  cursor: pointer;
+}
+
 #proj_header_menu {
   display: none;
 }
@@ -117,6 +121,7 @@ html, head, body, ul, li, h1, h2, h3 {
 .proj_header_genre {
   font-family: "Metropolis";
   font-size: 1.7em;
+  cursor: pointer;
 }
 .proj_header_genre:after {
   content: "";

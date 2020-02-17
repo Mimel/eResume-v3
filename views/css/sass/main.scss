@@ -114,8 +114,8 @@ $desktopBreakpoint: 850px;
   }
 }
 
-#proj_header {
-
+.proj_link {
+  cursor: pointer;
 }
 
 #proj_header_menu {
@@ -132,6 +132,7 @@ $desktopBreakpoint: 850px;
 .proj_header_genre {
   font-family: 'Metropolis';
   font-size: 1.7em;
+  cursor: pointer;
 
   &:after {
     content: '';

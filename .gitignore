@@ -103,6 +103,9 @@ dist
 # TernJS port file
 .tern-port
 
+# Login info
+pass.js
+
 # Assets
 /views/fonts
 /views/css/default-skin

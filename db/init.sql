@@ -1,7 +1,9 @@
+SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS project;
 DROP TABLE IF EXISTS link;
 DROP TABLE IF EXISTS image;
 DROP TABLE IF EXISTS thumbnail;
+SET FOREIGN_KEY_CHECKS = 1;
 
 CREATE TABLE project (
   id              INT AUTO_INCREMENT PRIMARY KEY,
@@ -17,7 +19,7 @@ CREATE TABLE link (
   `text`          VARCHAR(255),
   url             VARCHAR(255),
   project_id      INT,
-  CONSTRAINT fk_proj_id
+  CONSTRAINT fk_l_proj_id
     FOREIGN KEY (project_id)
     REFERENCES project(id)
 );
@@ -29,7 +31,7 @@ CREATE TABLE image (
   width           INT,
   height          INT,
   project_id      INT,
-  CONSTRAINT fk_proj_id
+  CONSTRAINT fk_i_proj_id
     FOREIGN KEY (project_id)
     REFERENCES project(id)
 );

@@ -4,12 +4,7 @@ const path = require('path');
 const mysql = require('mysql');
 const fs = require('fs');
 
-const serverConn = mysql.createConnection({
-  host: '127.0.0.1',
-  database: 'eresume',
-  user: 'root',
-  password: ''
-});
+const serverConn = require('./pass.js')
 
 const app = express();
 app.engine('handlebars', exphbs());
