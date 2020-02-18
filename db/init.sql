@@ -48,17 +48,12 @@ CREATE TABLE thumbnail (
 INSERT INTO project(title, short_desc, text_slug, genre) VALUES(
   'eResume (Version 3)',
   'My current ePortfolio, the one you\'re seeing right now. Made with Node Express and other libraries, Handlebars, SASS, and MySQL.',
-  'eResume_v3.html',
+  'eresume_v3.html',
   'Web'
 ), (
   'eResume (Version 2)',
   'My previous ePortfolio. Made with Angular.',
-  'eResume_v2.html',
-  'Web'
-), (
-  'eResume (Version 1)',
-  'My very first ePortfolio. Made with basic HTML, CSS, and JS.',
-  'eResume_v1.html',
+  'eresume_v2.html',
   'Web'
 );
 
@@ -100,5 +95,42 @@ INSERT INTO image(url, caption, width, height, project_id) VALUES(
 
 INSERT INTO thumbnail(url, image_id) VALUES(
   'images/eResume-v3/medium_image_thumb.jpg',
+  LAST_INSERT_ID()
+);
+
+/* eResume-v2 */
+
+SELECT @eRes2Id := id FROM project WHERE title = 'eResume (Version 2)';
+
+INSERT INTO link(site, `text`, url, project_id) VALUES(
+  'GitHub',
+  'GitHub Repository',
+  'https://github.com/Mimel/eResume-v2',
+  @eRes2Id
+);
+
+INSERT INTO image(url, caption, width, height, project_id) VALUES(
+  'images/eResume-v2/desktop_page.jpg',
+  'This is a sample fullsize image.',
+  1920,
+  1080,
+  @eRes2Id
+);
+
+INSERT INTO thumbnail(url, image_id) VALUES(
+  'images/eResume-v2/desktop_page_thumbnail.jpg',
+  LAST_INSERT_ID()
+);
+
+INSERT INTO image(url, caption, width, height, project_id) VALUES(
+  'images/eResume-v2/mobile_page.jpg',
+  'This is a sample mediumsize image.',
+  1080,
+  2220,
+  @eRes2Id
+);
+
+INSERT INTO thumbnail(url, image_id) VALUES(
+  'images/eResume-v2/mobile_page_thumbnail.jpg',
   LAST_INSERT_ID()
 );
