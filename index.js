@@ -3,6 +3,14 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 const mysql = require('mysql');
 const fs = require('fs');
+const got = require('got');
+const rateLimiter = require('express-rate-limit');
+
+const weatherAPIKey = 'e0febd126509b5d74868c7effe40ed21';
+const weatherLimiter = rateLimiter({
+  windowMs: 60 * 1000,
+  max: 60
+});
 
 const serverConn = require('./pass.js')
 
@@ -10,9 +18,10 @@ const app = express();
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 app.use('/', express.static(path.join(__dirname, '/views')));
+app.use('api.openweathermap.org', weatherLimiter);
 
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('index', { layout: false });
 });
 
 app.get('/projects', (req, res) => {
@@ -83,6 +92,22 @@ app.get('/project_retrieve/:project_slug', (req, res, next) => {
         }
       });
     }
+  });
+});
+
+app.get('/clock', (req, res) => {
+  res.render('clock', { layout: false });
+});
+
+app.get('/clock/weather_request/:lat/:long', (req, res) => {
+  var lat = req.params.lat;
+  var long = req.params.long;
+  got('https://api.openweathermap.org/data/2.5/weather?lat=' + lat + '&lon=' + long + '&appid=' + weatherAPIKey)
+  .then((w_res) => {
+    res.send(w_res.body);
+  }).catch((err) => {
+    console.log(err);
+    return null;
   });
 });
 
