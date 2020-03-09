@@ -12,7 +12,7 @@ var retrieveHtml = function(e) {
     // Create links section
     var linksString = '';
     for(var i = 0; i < res.links.length; i++) {
-      linksString += '<div><a href=\'' + res.links[i].site + '\'>' + res.links[i].text + '</a></div>';
+      linksString += '<div><a href=\'' + res.links[i].url + '\'>' + res.links[i].text + '</a></div>';
     }
     document.getElementById('proj_links').innerHTML = linksString;
 

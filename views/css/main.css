@@ -335,6 +335,10 @@ html, head, body, ul, li, h1, h2, h3 {
   flex-direction: row;
 }
 
+.proj_image {
+  max-height: 100px;
+}
+
 #proj_long_text {
   font-size: 0.7em;
 }
