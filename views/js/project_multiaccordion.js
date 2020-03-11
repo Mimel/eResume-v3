@@ -26,8 +26,9 @@ $(function() {
 
   // Hide listings on window resize.
   var desktopBreakpoint = 850;
+  var $phoneWidthBreakpoint = 479;
   window.addEventListener('resize', function(e) {
-    if(window.innerWidth > desktopBreakpoint) {
+    if(window.innerWidth > desktopBreakpoint && screen.width > phoneWidthBreakpoint) {
       if(currentShownElement >= 0) {
         accordionBody.children[currentShownElement].style.display = 'none';
         currentShownElement = -1;
